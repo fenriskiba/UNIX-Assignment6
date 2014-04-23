@@ -4,6 +4,7 @@
 #include <string>
 #include <climits>
 #include <sstream>
+#include <pthread.h>
 
 using namespace std;
 
