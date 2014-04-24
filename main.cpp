@@ -16,14 +16,14 @@ int main(int argc, char *argv[])
     int numberOfFiles = atoi(argv[1]);
     int* max = new int[numberOfFiles];
     pthread_t* threads = new pthread_t[numberOfFiles];
+    string* message = new string[numberOfFiles];
 
     for(int i = 0; i < numberOfFiles; i++)
     {
         stringstream filestream;
         filestream << "Inputs/file" << i + 1 << ".txt";
-        string message = filestream.str();
-        pthread_create(&threads[i], NULL, findLargestInFile, (void*)message.c_str());
-        cout << message << endl;
+        message[i] = filestream.str();
+        pthread_create(&threads[i], NULL, findLargestInFile, (void*)message[i].c_str());
     }
     
     for(int i = 0; i < numberOfFiles; i++)
@@ -73,7 +73,6 @@ int maxFromArray(int* array, int numberOfElements)
     
     for(int i = 1; i < numberOfElements; i++)
     {
-        cout << array[i] << endl;
         if(array[i] > result)
         {
             result = array[i];
